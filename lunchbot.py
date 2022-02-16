@@ -22,7 +22,7 @@ async def check_lunch(ctx):
         pc_time_rn = datetime.now(tz_caltech)
         hour = pc_time_rn.hour
         minute = pc_time_rn.minute
-        if 60 * hour + minute > 720 and 60 * hour + minute < 930:
+        if 60 * hour + minute > 660 and 60 * hour + minute < 930:
             is_it_lunch = "It's lunchtime!"
         else:
             is_it_lunch = "It's not time for lunch yet :("
