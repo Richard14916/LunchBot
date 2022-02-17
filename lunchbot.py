@@ -37,12 +37,14 @@ async def respond_lunchtime(ctx):
     else:
         return
 
-@bot.command(name="clowns_assemble", help="Summon the clowns for lunch")
-async def summon_clowns(ctx):
+@bot.command(name="clowns_assemble", help="Summon the clowns for lunch - pass a time to declare assembly time")
+async def summon_clowns(ctx, assembly_time=None):
+    if assembly_time is None:
+        assembly_time = datetime.now(tz_caltech).strftime("%H:%M")
     if ctx.message.channel.name == 'lunch':
         if check_lunch_time():
             clown = discord.utils.get(ctx.guild.roles, name="🤡")
-            summons_message = "{} you are summoned for lunch, clowns.".format(clown.mention)
+            summons_message = "{} you are summoned for lunch at {}, clowns.".format(clown.mention, assembly_time)
         else:
             summons_message = "You can't summon the clowns, it's not lunch time yet!"
         await ctx.send(summons_message)
